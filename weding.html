@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Andrii & Sofiia Wedding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Ballet&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{ scroll-behavior:smooth; }
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background:#f7f4ef;
+  overflow-x:hidden;
+  color:#222;
+}
+
+/* ================= INTRO ================= */
+
+.intro{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+  url('https://images.openai.com/static-rsc-4/b5u5d0XWM16dEGz1s2m1-e09aERSn51HiaGTG76smgDiVHIb-WNc4yTLKx2-Lg9mQhUHTAGEigwLDea7tkudU_GlWm8Cxp7x1b7NHRHG-bXJ22nAsbmf8txBR-ugDct_Z_XPYEPGdiqBaVpBf583TnNAwdyYrL37GMUwGb7xkhYXcdSA7mQ8qwHtXa9lZq-I?purpose=fullsize');
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  color:white;
+  text-align:center;
+  transition:opacity 1.2s ease;
+}
+
+.intro-content{
+  padding:20px;
+  max-width:700px;
+}
+
+/* УНІФІКОВАНИЙ СТИЛЬ ДЛЯ ЗАГОЛОВКІВ (оновлено) */
+
+/* базовий h1 — нейтральний запасний стиль для інших секцій */
+h1{
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+/* великий рукописний заголовок для сторінки-героя (імена) */
+.hero h1{
+  font-family: 'Ballet', cursive;
+  font-size: clamp(80px, 12vw, 180px);
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  color: #fff;
+  line-height: 0.95;
+  text-transform: none;
+}
+
+/* титульний заголовок в інтродукції — виглядає як імена, але трохи компактніший */
+.intro h1,
+.intro-content h1{
+  font-family: 'Ballet', cursive;
+  font-size: clamp(60px, 10vw, 140px);
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  color: #fff;
+  line-height: 0.95;
+  text-transform: none;
+}
+
+/* INTRO TEXT */
+.intro-text{
+  font-family:'Playfair Display', serif;
+  font-style:italic;
+  font-size:clamp(18px,3vw,30px);
+  opacity:0.95;
+  margin:30px 0 40px;
+}
+
+.intro-btn{
+  padding:14px 34px;
+  font-size:18px;
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+  background:rgba(255,255,255,0.18);
+  color:white;
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.3);
+  transition:0.3s;
+  font-family:'Playfair Display', serif;
+}
+
+.intro-btn:hover{
+  transform:scale(1.05);
+  background:rgba(255,255,255,0.28);
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 2.2s ease, transform 9s ease;
+  transform:scale(1);
+}
+
+.slide.active{
+  opacity:1;
+  transform:scale(1.07);
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55));
+  z-index:1;
+}
+
+.content{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+  color:white;
+}
+
+.subtitle{
+  font-family:'Ballet', cursive;
+  font-size:clamp(28px,4vw,52px);
+  opacity:0.9;
+  margin-bottom:10px;
+}
+
+.text{
+  font-family:'Playfair Display', serif;
+  font-style:italic;
+  font-size:clamp(16px,2vw,24px);
+  opacity:0.92;
+}
+
+/* COUNTDOWN */
+
+.countdown{
+  margin-top:35px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.time-box{
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.2);
+  padding:16px;
+  border-radius:18px;
+  min-width:80px;
+  text-align:center;
+  font-family:'Playfair Display', serif;
+}
+
+.time-box span{
+  display:block;
+  font-size:26px;
+}
+
+/* SECTIONS */
+
+.section{
+  position:relative;
+  padding:90px 20px;
+  text-align:center;
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+}
+
+.section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(rgba(20,20,20,0.25), rgba(20,20,20,0.55));
+}
+
+.section > *{
+  position:relative;
+  z-index:2;
+}
+
+.glass{
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.18);
+  backdrop-filter:blur(12px);
+  padding:16px 24px;
+  border-radius:22px;
+  color:white;
+  font-family:'Playfair Display', serif;
+  font-style:italic;
+}
+
+.location-link{
+  font-family:'Allura', cursive;
+  font-size:clamp(30px,6vw,60px);
+  color:white;
+  text-decoration:none;
+}
+
+.palette{
+  background:#e7ddd6;
+}
+
+.palette::before{ display:none; }
+
+.palette h2{
+  font-family:'Playfair Display', serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:30px;
+  max-width:900px;
+}
+
+.colors{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:25px;
+  justify-content:center;
+}
+
+.color{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+}
+
+/* Responsive tweaks */
+@media (max-width:420px){
+  .intro-content{ padding:12px; }
+  .intro-text{ margin:18px 0 24px; }
+  .intro-btn{ padding:12px 26px; font-size:16px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro" class="intro">
+
+  <div class="intro-content">
+
+    <h1>Запрошуємо</h1>
+
+    <div class="intro-text">
+      Поринути у світ незабутніх емоцій, ніжності та любові ❤️
+    </div>
+
+    <button class="intro-btn" onclick="openSite()">
+      Відкрити запрошення
+    </button>
+
+  </div>
+
+</div>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="slide active"
+    style="background-image:url('https://images.openai.com/static-rsc-4/b5u5d0XWM16dEGz1s2m1-e09aERSn51HiaGTG76smgDiVHIb-WNc4yTLKx2-Lg9mQhUHTAGEigwLDea7tkudU_GlWm8Cxp7x1b7NHRHG-bXJ22nAsbmf8txBR-ugDct_Z_XPYEPGdiqBaVpBf583TnNAwdyYrL37GMUwGb7xkhYXcdSA7mQ8qwHtXa9lZq-I?purpose=fullsize')">
+  </div>
+
+  <div class="overlay"></div>
+
+  <div class="content">
+
+    <h1>Andrii & Sofiia</h1>
+
+    <div class="subtitle">Ми одружуємось</div>
+
+    <div class="text">Запрошуємо вас розділити цей особливий день</div>
+
+    <div class="countdown">
+      <div class="time-box"><span id="days">0</span>Днів</div>
+      <div class="time-box"><span id="hours">0</span>Год</div>
+      <div class="time-box"><span id="minutes">0</span>Хв</div>
+      <div class="time-box"><span id="seconds">0</span>Сек</div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- DATE -->
+<section class="section"
+style="background-image:url('https://wedding.flowers.ua/wp-content/uploads/2024/09/13-2.jpg')">
+
+  <h2 class="glass">21 серпня 2026</h2>
+
+  <a class="location-link"
+    href="https://www.google.com/maps/dir/?api=1&destination=Chateau+Josefuv+Dul"
+    target="_blank" rel="noopener">
+     Château Josefův Důl 
+  </a>
+
+  <p class="glass">Ми будемо раді розділити цей день з вами</p>
+
+  <p class="glass">Очікуємо вас з 14:00 до 15:00</p>
+
+</section>
+
+<!-- COLORS -->
+<section class="section palette">
+
+  <h2>
+    Нам буде приємно, якщо ви оберете теплі природні відтінки для своїх образів
+  </h2>
+
+  <div class="colors">
+    <div style="background:#D8C3A5" class="color"></div>
+    <div style="background:#C9B59A" class="color"></div>
+    <div style="background:#C98C8C" class="color"></div>
+    <div style="background:#7B5E57" class="color"></div>
+    <div style="background:#492f26" class="color"></div>
+    <div style="background:#6F7B5B" class="color"></div>
+  </div>
+
+</section>
+
+<!-- FINAL -->
+<section class="section"
+style="background-image:url('https://infosite.kyiv.ua/wp-content/uploads/2025/05/suhoczvity-1024x512.webp')">
+
+  <h2 class="glass">Чекаємо на вас ❤️</h2>
+
+  <p class="glass">
+    Ми будемо щасливі розділити цей день разом із вами
+  </p>
+
+</section>
+
+<script>
+
+function openSite(){
+  const intro = document.getElementById('intro');
+  intro.style.opacity = '0';
+  intro.style.transition = 'opacity 1.2s ease';
+  setTimeout(()=> intro.style.display='none',1200);
+}
+
+/* Встановіть дату і час весілля у локальному часовому форматі */
+const weddingDate = new Date('2026-08-21T15:00:00');
+
+function updateCountdown(){
+  const now = new Date();
+  const diff = weddingDate - now;
+
+  if (diff <= 0){
+    document.getElementById('days').innerText = 0;
+    document.getElementById('hours').innerText = 0;
+    document.getElementById('minutes').innerText = 0;
+    document.getElementById('seconds').innerText = 0;
+    return;
+  }
+
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const minutes = Math.floor((diff % 3600000) / 60000);
+  const seconds = Math.floor((diff % 60000) / 1000);
+
+  document.getElementById('days').innerText = days;
+  document.getElementById('hours').innerText = hours;
+  document.getElementById('minutes').innerText = minutes;
+  document.getElementById('seconds').innerText = seconds;
+}
+
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+let slides = document.querySelectorAll('.slide');
+let current = 0;
+
+if (slides.length > 1) {
+  setInterval(()=>{
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  },6000);
+}
+
+</script>
+
+</body>
+</html>
